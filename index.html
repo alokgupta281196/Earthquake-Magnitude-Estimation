@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Earthquake Magnitude Prediction</title>
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: "Segoe UI", Tahoma, sans-serif;
+            background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #ffffff;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(12px);
+            padding: 35px 45px;
+            border-radius: 15px;
+            width: 360px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 25px;
+            letter-spacing: 1px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 6px;
+            font-size: 14px;
+            opacity: 0.9;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            border-radius: 8px;
+            border: none;
+            outline: none;
+            margin-bottom: 18px;
+            font-size: 14px;
+        }
+
+        input:focus {
+            box-shadow: 0 0 0 2px #00e5ff;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            background: linear-gradient(135deg, #00e5ff, #00bcd4);
+            color: #000;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(0, 229, 255, 0.6);
+        }
+
+        .result {
+            margin-top: 25px;
+            padding: 15px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+        }
+
+        .result h3 {
+            margin-top: 0;
+            text-align: center;
+            color: #00e5ff;
+        }
+
+        .result p {
+            margin: 8px 0;
+            font-size: 15px;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 15px;
+            font-size: 12px;
+            opacity: 0.7;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h2>🌍 Earthquake Magnitude Estimation</h2>
+
+    <form method="post">
+        <label>Latitude</label>
+        <input type="text" name="latitude" required>
+
+        <label>Longitude</label>
+        <input type="text" name="longitude" required>
+
+        <label>Depth (km)</label>
+        <input type="text" name="depth" required>
+
+        <button type="submit">🔍 Predict Magnitude</button>
+    </form>
+
+    {% if prediction %}
+    <div class="result">
+        <h3>📊 Predicted Magnitude</h3>
+        {% for model, value in prediction.items() %}
+            <p><strong>{{ model }}</strong> : {{ value }}</p>
+        {% endfor %}
+    </div>
+    {% endif %}
+
+    <div class="footer">
+        ML / DL Earthquake Project
+    </div>
+
+</div>
+
+</body>
+</html>
